@@ -1,0 +1,198 @@
+﻿    <!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+  <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,600,700,900|RobotoDraft:400,100,300,500,700,900'>
+<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+
+      <link rel="stylesheet" href="~/login/css/style.css">
+    <style>
+        #ac {
+            background-color:deepskyblue
+        }
+        
+    form {
+        padding-left:500px;
+    display: inline-block;
+    text-align: center;
+    }
+    
+    </style>
+    <script>
+
+        function validation() {
+
+            var startdate = document.getElementById("one").value;
+            var enddate = document.getElementById("two").value;
+            var course = document.getElementById("three").value;
+            document.getElementById("val").style.visibility = "hidden"
+
+            if (startdate == "") {
+                document.getElementById("val").innerText = "please select start date";
+                document.getElementById("val").style.visibility = "visible"
+                return false;
+            }
+            else if (enddate == "") {
+                document.getElementById("val").innerText = "please select end date";
+                document.getElementById("val").style.visibility = "visible"
+                return false;
+            }
+            else if (course == "select") {
+                document.getElementById("val").innerText = "please select course";
+                document.getElementById("val").style.visibility = "visible"
+                return false;
+            }
+
+
+            else {
+                return true;
+            }
+        }
+    </script>
+    <title>ExamHistory</title>
+    
+   
+
+
+
+    <!-- Bootstrap Core CSS -->
+ 
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    
+    <link href="~/css/landing-page.css" rel="stylesheet" />
+    <!-- Custom Fonts -->
+
+    <link href="~/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    
+
+  
+</head>
+
+<body>
+     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="AddSubject">Add Subject</a>
+                    </li>
+                    <li>
+                        <a href="UpdateQuestions">Update Questions</a>
+                    </li>
+                    <li>
+                        <a href="DeleteSubject">Delete Subject</a>
+                    </li>
+                    <li>
+                        <a href="ExamHistory">Exam History</a>
+                    </li>
+                    <li>
+                        <a href="AdminLogout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+         </nav>
+ 
+<form method="post" onsubmit="return validation()">
+
+@*<div class="pen-title">
+  <h1>Exam History</h1>
+</div>
+<div class="module form-module">
+  <div class="toggle">
+  </div>
+  <div class="form">
+    <h2>Exam History</h2>*@
+
+    <br /><br />
+    <br /><br />
+    
+     <h1>Exam History</h1><br />
+    <label for="cor">Subject Name</label>
+       <select name="SubjectName" id="three">
+              <option>select</option>
+
+            @if(!IsPost){
+                
+            foreach (var item in @ViewBag.Subjects)
+            {
+                <option>
+                    @item
+                </option>
+            }     
+            }
+             
+        </select><br />
+            <br />
+
+      <input type="submit" style="color:white;background-color:green;"/><br /><br />
+    <label id="val" style="visibility:hidden;color:red;float:right"></label>   
+                  @if (IsPost)
+                      
+                    
+            {
+                       
+                if (true)
+                {
+                   
+                     
+                <table border="1">
+                    <tr>
+                    <th>User Name&nbsp</th>
+                    <th>Subject Name&nbsp </th>
+                    <th>Date Of Exam&nbsp</th> 
+                    <th>Percentage &nbsp</th>
+                        <th>Status of Exam &nbsp</th>
+                        </tr>
+
+          
+
+                    @foreach (var item in ViewBag.List)
+                    {
+                        <tr>
+                          <td > @item.UserName </td>
+                            <td > @item.SubjectName </td>
+                            <td > @item.DateOfExam </td>
+                            <td > @item.Percentage </td>
+                            <td> @item.StatusOfExam </td>
+                            </tr>
+                    }
+          
+                
+                     </table> 
+                }
+                
+                
+                  
+                }
+                    
+    </form>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+
+    <script src="~/login/js/index.js"></script>
+
+</body>
+</html>

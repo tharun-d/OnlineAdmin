@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "UserPage";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>UserPage</h2>
+<h4> Your Registeration done succesfully go to login page  </h4>
+<body>
+    <div>
+        <form method="post">
+       
+            @if (!IsPost)
+            {
+                foreach (var  item in ViewBag.a)
+                {
+                    @item<br />
+                }
+            }
+
+        </form>
+    </div>
+</body>

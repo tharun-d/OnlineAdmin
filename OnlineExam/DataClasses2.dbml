@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="hi" Class="DataClasses2DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=WKSMAN01MLAT815;Initial Catalog=hi;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="hiConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.QuestionsTable" Member="QuestionsTables">
+    <Type Name="QuestionsTable">
+      <Column Name="SNo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CourseId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="QuestionNo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Question" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Option1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Option2" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Option3" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Option4" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CorrectOption" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="category" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

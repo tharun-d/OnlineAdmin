@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+    <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,600,700,900|RobotoDraft:400,100,300,500,700,900'>
+    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+
+    <link rel="stylesheet" href="~/login/css/style.css">
+    <style>
+        #ac {
+            background-color: deepskyblue;
+        }
+    </style>
+
+
+
+    <title>Update Questions</title>
+
+    <!-- Bootstrap Core CSS -->
+
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+
+    <link href="~/css/landing-page.css" rel="stylesheet" />
+    <!-- Custom Fonts -->
+
+    <link href="~/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+
+    <script>
+         function validation() {
+             return true;
+             var file1 = document.getElementById("one").value;
+             var cname = document.getElementById("two").value;
+
+             document.getElementById("val").style.visibility = "hidden"
+
+             if ( cname=="" && file1=="select"  ) {
+                 document.getElementById("val").innerText = "All fields are mandatory";
+                 document.getElementById("val").style.visibility = "visible"
+                 return false;
+             }
+
+             else if (cname == "") {
+                 document.getElementById("val").innerText = "Please enter course name";
+                 document.getElementById("val").style.visibility = "visible"
+                 return false;
+
+             }
+             else if (file1 == "select") {
+                 document.getElementById("val").innerText = "No File chosen";
+                 document.getElementById("val").style.visibility = "visible"
+                 return false;
+
+             }
+         }
+    </script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="AddSubject">Add Subject</a>
+                    </li>
+                    <li>
+                        <a href="UpdateQuestions">Update Questions</a>
+                    </li>
+                    <li>
+                        <a href="DeleteSubject">Delete Subject</a>
+                    </li>
+                    <li>
+                        <a href="ExamHistory">Exam History</a>
+                    </li>
+                    <li>
+                        <a href="AdminLogout">Logout</a>
+                    </li>
+                        </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pen-title">
+        <h1>Update Quesions</h1>
+    </div>
+    <div class="module form-module">
+        <div class="toggle">
+        </div>
+        <div class="form">
+            <h2>enter the Subject Name</h2>
+            @using (Html.BeginForm("UpdateQuestions", "Home", FormMethod.Post, new { enctype = "multipart/form-data", onsubmit = "return validation()" }))
+            {
+
+            <div>
+                @*    <input id="please enter  the coursename here" placeholder="Select the course name" class="form-control" type="text" name="course" /></ br>*@
+                <select name="SubjectName">
+                    <option>Select</option>
+                    @if (!IsPost)
+                    {
+                    foreach (var item in @ViewBag.Subjects)
+                    {
+                    <option>
+                        @item
+                    </option>
+                    }
+                    }
+                   
+                </select>
+
+              <br />
+                <br/>
+                <h2>select the exam level</h2>
+                <select name="examlevel">
+                    <option>Select</option>
+                    @if (!IsPost)
+                    {
+                    @*foreach (var item in @ViewBag.Subjects)*@
+
+                        <option>Hard</option>
+                        <option>Easy</option>
+
+                    }
+
+                </select>
+                <br>
+                <br>
+
+
+                <h2>Please select the Subject file</h2>
+
+                @Html.TextBox("ExcelFile", "", new { id = "one", type = "file" }) <br />
+
+
+                <br /><br />
+                <input type="submit" value="Upload" />
+
+                <label id="val" style="visibility:hidden;color:red;float:right"></label>
+
+                @if (IsPost)
+                {
+                @ViewBag.Message
+                }
+
+            </div>
+            }
+           
+        </div>
+    </div>
+
+
+
+
+
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+
+    <script src="~/login/js/index.js"></script>
+
+</body>
+</html>
